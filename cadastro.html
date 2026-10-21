@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LittlePet - Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    
+    <header>
+        <h1>LittlePet</h1>
+
+        <nav>
+
+            <a href="index.html">Início</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="cadastro.html">Cadastrar</a>
+            <a href="lista.php">Animais</a>
+            <a href="editar.php">Editar</a>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="conteudo">
+
+            <h2>Cadastrar Animal</h2>
+            <p>Preencha as informações abaixo para cadastrar um novo animal.</p>
+
+            <form action="php/cadastrar.php" method="POST" id="formulario">
+
+                <label>Nome do animal:</label>
+
+                <input
+                    type="text"
+                    name="nome"
+                    id="nome"
+                >
+
+
+                <label>Espécie:</label>
+
+                <select name="especie" id="especie">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="Cachorro">
+                        Cachorro
+                    </option>
+
+                    <option value="Gato">
+                        Gato
+                    </option>
+
+                    <option value="Ave">
+                        Ave
+                    </option>
+
+                    <option value="Outro">
+                        Outro
+                    </option>
+
+                </select>
+
+
+                <label>Raça:</label>
+
+                <input
+                    type="text"
+                    name="raca"
+                    id="raca"
+                >
+
+
+                <label>Idade:</label>
+
+                <input
+                    type="number"
+                    name="idade"
+                    id="idade"
+                    min="0"
+                >
+
+
+                <label>Sexo:</label>
+
+                <select name="sexo" id="sexo">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="Macho">
+                        Macho
+                    </option>
+
+                    <option value="Fêmea">
+                        Fêmea
+                    </option>
+
+                </select>
+
+
+                <label>Cor:</label>
+
+                <input
+                    type="text"
+                    name="cor"
+                    id="cor"
+                >
+
+
+                <label>Peso (kg):</label>
+
+                <input
+                    type="number"
+                    name="peso"
+                    id="peso"
+                    step="0.1"
+                    min="0"
+                >
+
+
+                <label>Nome do tutor:</label>
+
+                <input
+                    type="text"
+                    name="tutor"
+                    id="tutor"
+                >
+
+
+                <label>Telefone do tutor:</label>
+
+                <input
+                    type="text"
+                    name="telefone"
+                    id="telefone"
+                >
+
+
+                <label>Observações:</label>
+
+                <textarea
+                    name="observacoes"
+                    id="observacoes"
+                    rows="4"
+                ></textarea>
+
+
+                <button type="submit">
+                    Cadastrar Animal
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>LittlePet - Sistema de Cadastro de Animais</p>
+    </footer>
+</body>
+</html>

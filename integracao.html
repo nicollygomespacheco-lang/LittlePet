@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LittlePet - Cadastro de Animais</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/integracao.js" defer></script>
+</head>
+<body>
+    <main>
+        <h1>LittlePet</h1>
+        <h2>Cadastro de animais</h2>
+
+        <form id="formAnimal">
+            <label for="nome">Nome do animal:</label>
+            <input type="text" id="nome" required>
+
+            <label for="especie">Espécie:</label>
+            <select id="especie" required>
+                <option value="">Selecione</option>
+                <option value="Cachorro">Cachorro</option>
+                <option value="Gato">Gato</option>
+                <option value="Ave">Ave</option>
+                <option value="Outro">Outro</option>
+            </select>
+
+            <label for="idade">Idade (anos):</label>
+            <input type="number" id="idade" min="0" step="1" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao"></textarea>
+
+            <button type="submit">Cadastrar animal</button>
+        </form>
+
+        <p id="mensagem" role="status"></p>
+
+        <h2>Animais cadastrados</h2>
+        <button type="button" id="botaoAtualizar">Atualizar lista</button>
+
+        <ul id="listaAnimais"></ul>
+
+        <p><a href="index.html">Voltar à página inicial</a></p>
+    </main>
+</body>
+</html>
