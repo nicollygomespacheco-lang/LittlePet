@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teste da API</title>
+</head>
+
+<body>
+
+    <h1>Teste da API LittlePet</h1>
+
+    <button onclick="editarAnimal()">Editar animal 1</button>
+    <button onclick="excluirAnimal()">Excluir animal 1</button>
+
+    <p id="mensagem"></p>
+
+    <script>
+        const API_URL = "http://localhost:5000/animais";
+
+        async function editarAnimal() {
+            const dados = {
+                nome: "Rex Atualizado",
+                especie: "Cachorro",
+                idade: 3,
+                descricao: "Animal atualizado pela API."
+            };
+
+            try {
+                const resposta = await fetch(`${API_URL}/1`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(dados)
+                });
+
+                const resultado = await resposta.json();
+
+                document.getElementById("mensagem").textContent =
+                    JSON.stringify(resultado);
+
+            } catch (erro) {
+                document.getElementById("mensagem").textContent =
+                    "Erro ao editar animal.";
+            }
+        }
+
+        async function excluirAnimal() {
+            try {
+                const resposta = await fetch(`${API_URL}/1`, {
+                    method: "DELETE"
+                });
+
+                const resultado = await resposta.json();
+
+                document.getElementById("mensagem").textContent =
+                    JSON.stringify(resultado);
+
+            } catch (erro) {
+                document.getElementById("mensagem").textContent =
+                    "Erro ao excluir animal.";
+            }
+        }
+    </script>
+
+</body>
+</html>

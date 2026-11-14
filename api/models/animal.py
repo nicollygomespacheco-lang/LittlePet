@@ -1,5 +1,13 @@
 class Animal:
-    def __init__(self, id=None, nome="", especie="", idade=0, descricao=""):
+
+    def __init__(
+        self,
+        nome,
+        especie,
+        idade,
+        descricao="",
+        id=None
+    ):
         self.id = id
         self.nome = nome
         self.especie = especie

@@ -6,31 +6,32 @@ class AnimalDAO:
 
     def listar(self):
         with conectar_banco() as conexao:
-            registros = conexao.execute(
-                "SELECT * FROM animais ORDER BY id DESC"
-            ).fetchall()
 
-        animais = []
+            registros = conexao.execute("""
+                SELECT id, nome, especie, idade, descricao
+                FROM animais
+                ORDER BY id DESC
+            """).fetchall()
 
-        for registro in registros:
-            animal = Animal(
+        return [
+            Animal(
                 id=registro["id"],
                 nome=registro["nome"],
                 especie=registro["especie"],
                 idade=registro["idade"],
                 descricao=registro["descricao"]
             )
-
-            animais.append(animal)
-
-        return animais
+            for registro in registros
+        ]
 
     def buscar_por_id(self, id):
         with conectar_banco() as conexao:
-            registro = conexao.execute(
-                "SELECT * FROM animais WHERE id = ?",
-                (id,)
-            ).fetchone()
+
+            registro = conexao.execute("""
+                SELECT id, nome, especie, idade, descricao
+                FROM animais
+                WHERE id = ?
+            """, (id,)).fetchone()
 
         if registro is None:
             return None
@@ -45,19 +46,17 @@ class AnimalDAO:
 
     def inserir(self, animal):
         with conectar_banco() as conexao:
-            cursor = conexao.execute(
-                """
+
+            cursor = conexao.execute("""
                 INSERT INTO animais
                 (nome, especie, idade, descricao)
                 VALUES (?, ?, ?, ?)
-                """,
-                (
-                    animal.nome,
-                    animal.especie,
-                    animal.idade,
-                    animal.descricao
-                )
-            )
+            """, (
+                animal.nome,
+                animal.especie,
+                animal.idade,
+                animal.descricao
+            ))
 
             animal.id = cursor.lastrowid
 
@@ -65,29 +64,26 @@ class AnimalDAO:
 
     def atualizar(self, animal):
         with conectar_banco() as conexao:
-            conexao.execute(
-                """
+
+            conexao.execute("""
                 UPDATE animais
                 SET nome = ?,
                     especie = ?,
                     idade = ?,
                     descricao = ?
                 WHERE id = ?
-                """,
-                (
-                    animal.nome,
-                    animal.especie,
-                    animal.idade,
-                    animal.descricao,
-                    animal.id
-                )
-            )
-
-        return animal
+            """, (
+                animal.nome,
+                animal.especie,
+                animal.idade,
+                animal.descricao,
+                animal.id
+            ))
 
     def excluir(self, id):
         with conectar_banco() as conexao:
-            conexao.execute(
-                "DELETE FROM animais WHERE id = ?",
-                (id,)
-            )
+
+            conexao.execute("""
+                DELETE FROM animais
+                WHERE id = ?
+            """, (id,))
